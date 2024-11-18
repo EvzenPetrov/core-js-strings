@@ -522,7 +522,7 @@ function extractEmails(str) {
  *
  */
 function encodeToRot13(str) {
-  return str.replace(/[a-zA-Z]/g, function (char) {
+  function getChange(char) {
     const code = char.charCodeAt(0);
     if ((code >= 65 && code <= 77) || (code >= 97 && code <= 109)) {
       return String.fromCharCode(code + 13);
@@ -531,7 +531,8 @@ function encodeToRot13(str) {
       return String.fromCharCode(code - 13);
     }
     return char;
-  });
+  }
+  return str.replace(/[a-zA-Z]/g, getChange);
 }
 
 /**
